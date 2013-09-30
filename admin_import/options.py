@@ -94,8 +94,10 @@ def get_admin_import_model_form(self, request, **kwargs):
     return self.get_form(request, **kwargs)
 
 
-def add_import(admin, add_button=False):
-    setattr(admin, 'import_xls_view', import_xls_view)
+def add_import(admin, add_button=False, import_view=None):
+    if not import_view:
+        import_view = import_xls_view
+    setattr(admin, 'import_xls_view', import_view)
     setattr(admin, 'get_urls', decorate_get_urls(getattr(admin, 'get_urls')))
     if not hasattr(admin, 'get_admin_import_model_form'):
         setattr(admin, 'get_admin_import_model_form', get_admin_import_model_form)

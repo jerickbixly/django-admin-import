@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 IMPORT_FILE_TYPES = ['.xls', ]
 
+class TextInputForm(forms.Form):
+    input_txt = forms.FileField(required=True, label=_("Uplaod the txt file to import to the system."))
 
 class XlsInputForm(forms.Form):
     input_excel = forms.FileField(required=True,
